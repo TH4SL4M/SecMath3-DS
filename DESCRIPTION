@@ -3,6 +3,8 @@ Type: Project
 Title: CourseKata Binder
 Version: 0.1
 Authors@R: person("Tyler", "Haslam", email = "you@example.com", role = c("aut", "cre"))
-Description: Minimal DESCRIPTION file to trigger R buildpack
+Description: A minimal R project setup for CourseKata in Binder
 License: MIT
 Encoding: UTF-8
+
+
