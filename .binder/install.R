@@ -1,15 +1,12 @@
+install.packages("remotes")
+remotes::install_github("r-lib/gtable@v0.3.4")  # Needed for ggplot2 >= 3.4
+remotes::install_github("tidyverse/ggplot2@v3.4.4")  # latest safe version for R 4.2.1
+
 install.packages("IRkernel")
 IRkernel::installspec(user = FALSE)
 
-install.packages("remotes")
-library(remotes)
+# Install tidyverse AFTER ggplot2 so it doesn't downgrade ggplot2
+install.packages("tidyverse")
 
-# Install everything else (dependencies, CourseKata)
-install.packages(c("tidyverse", "dplyr"))
+# Finally install CourseKata
 remotes::install_github("CourseKata/coursekata-r")
-
-# NOW install the required gtable version before ggplot2
-remotes::install_version("gtable", version = "0.3.6")
-
-# Then install latest ggplot2 from GitHub
-remotes::install_github("tidyverse/ggplot2")
