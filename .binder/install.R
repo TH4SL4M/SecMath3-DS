@@ -4,11 +4,11 @@ IRkernel::installspec(user = FALSE)
 install.packages("remotes")
 library(remotes)
 
-# install a modern ggplot2 version from GitHub first
-remotes::install_github("tidyverse/ggplot2")
+# Install tidyverse tools first (coursekata depends on these)
+install.packages(c("tidyverse", "dplyr"))
 
-# Now install the coursekata package
+# Install coursekata next
 remotes::install_github("CourseKata/coursekata-r")
 
-# other packages you need
-install.packages(c("tidyverse", "dplyr"))
+# NOW force a newer ggplot2 version from GitHub (overwrites the CRAN one)
+remotes::install_github("tidyverse/ggplot2")
