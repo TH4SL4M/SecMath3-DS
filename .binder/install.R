@@ -1,4 +1,4 @@
-options(repos = c(CRAN = "https://packagemanager.posit.co/cran/2021-01-01"))
+options(repos = c(CRAN = "https://cran.r-project.org"))
 
 pkgs <- c(
   "IRkernel", "mosaic", "supernova", "Lock5withR", 
@@ -13,5 +13,5 @@ install_if_missing <- function(pkg) {
 
 invisible(lapply(pkgs, install_if_missing))
 
-# Install coursekata from an older version that works with R 4.0.3
+# Install CourseKata using known good commit (can be updated later)
 remotes::install_github("CourseKata/coursekata-r@7f9b1fc")
