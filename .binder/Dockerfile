@@ -1,17 +1,22 @@
-FROM gcr.io/deepnote-200602/templates/deepnote
+FROM r-base:4.0.3
 
-# Install R 4.0.3
-RUN echo "deb http://cloud.r-project.org/bin/linux/debian buster-cran40/" | tee -a /etc/apt/sources.list && \
-    apt-key adv --keyserver keys.gnupg.net --recv-key 'E19F5F87128899B192B1A2C2AD5F960A256A04AF' && \
-    apt update && \
-    apt install -y -t buster-cran40 r-base
+# Install system dependencies for Jupyter and IRkernel
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    libcurl4-openssl-dev \
+    libssl-dev \
+    libxml2-dev \
+    libgit2-dev \
+    curl \
+    wget \
+    fonts-dejavu \
+    && rm -rf /var/lib/apt/lists/*
 
-# Install required R packages
+# Install IRkernel + other packages
 COPY .binder/install.R /tmp/install.R
 RUN Rscript /tmp/install.R
 
 # Register IRkernel system-wide
 RUN R -e "IRkernel::installspec(user = FALSE)"
 
-# Optional: set plot size defaults
-RUN echo 'options(repr.plot.width = 4, repr.plot.height = 4)' >> /etc/R/Rprofile.site
+# Default plot size
+RUN echo 'options(repr.plot.width = 4, repr.plot.height = 4)' >> /usr/local/lib/R/etc/Rprofile.site
