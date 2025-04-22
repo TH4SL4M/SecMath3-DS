@@ -1,0 +1,5 @@
+install.packages("IRkernel")
+IRkernel::installspec(user = FALSE)
+install.packages("remotes")
+install.packages(c("tidyverse", "ggplot2", "dplyr"))
+remotes::install_github("coursekata/coursekata-r")
