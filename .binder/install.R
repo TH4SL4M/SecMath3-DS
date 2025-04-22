@@ -4,11 +4,12 @@ IRkernel::installspec(user = FALSE)
 install.packages("remotes")
 library(remotes)
 
-# Install tidyverse tools first (coursekata depends on these)
+# Install everything else (dependencies, CourseKata)
 install.packages(c("tidyverse", "dplyr"))
-
-# Install coursekata next
 remotes::install_github("CourseKata/coursekata-r")
 
-# NOW force a newer ggplot2 version from GitHub (overwrites the CRAN one)
+# NOW install the required gtable version before ggplot2
+remotes::install_version("gtable", version = "0.3.6")
+
+# Then install latest ggplot2 from GitHub
 remotes::install_github("tidyverse/ggplot2")
