@@ -1,4 +1,6 @@
 install.packages("IRkernel")
+install.packages("devtools")  # Needed to install GitHub packages
+
 IRkernel::installspec(user = FALSE)
 
-install.packages("coursekata")
+devtools::install_github("CourseKata/coursekata-r")
